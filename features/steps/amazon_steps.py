@@ -43,4 +43,6 @@ def step_impl(context, quantity):
 @then('the basket count should now be "{count}"')
 def step_impl(context, count):
     amazon_home_page = AmazonHomePage(context.page)
-    assert amazon_home_page.get_cart_count() == count
+    context.page.wait_for_timeout(2000)  
+    actual_count = amazon_home_page.get_cart_count()
+    assert actual_count == count
